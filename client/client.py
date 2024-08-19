@@ -1,7 +1,6 @@
 # client.py
 import grpc
-import service_pb2
-import service_pb2_grpc
+from protos import service_pb2, service_pb2_grpc
 
 
 def run():
