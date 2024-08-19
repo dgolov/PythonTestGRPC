@@ -15,7 +15,7 @@ python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./protos/*.pr
 Run FastAPI app
 
 ```bash
-uvicorn main.py:app
+source run.sh
 ```
 
 Run client
