@@ -1,6 +1,8 @@
-import grpc
 from concurrent import futures
 from protos import service_pb2, service_pb2_grpc
+from setings import HOST, PORT
+
+import grpc
 
 
 class HelloWorldServicer(service_pb2_grpc.HelloWorldServicer):
@@ -12,7 +14,9 @@ class HelloWorldServicer(service_pb2_grpc.HelloWorldServicer):
 def serve():
     print("Start gRPC server")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    service_pb2_grpc.add_HelloWorldServicer_to_server(HelloWorldServicer(), server)
-    server.add_insecure_port('[::]:50051')
+    service_pb2_grpc.add_HelloWorldServicer_to_server(
+        HelloWorldServicer(), server
+    )
+    server.add_insecure_port(f"{HOST}:{PORT}")
     server.start()
     server.wait_for_termination()
